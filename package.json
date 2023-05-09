@@ -2,7 +2,7 @@
   "name": "travel-rule-pii",
   "version": "1.0.1",
   "description": "My Node.js application",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "repository": "https://github.com/rade-fireblocks/travel-rule-pii.git",
   "scripts": {
     "type-check": "tsc --noEmit",
