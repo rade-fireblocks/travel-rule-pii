@@ -1,18 +1,15 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es6",
-    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "strict": true,
+    "module": "esnext",
+    "lib": ["ES2019"],
+    "noEmit": true,
     "moduleResolution": "node",
-    "declaration": true,
-    "sourceMap": true,
-    "outDir": "dist",
-    "baseUrl": ".",
-    "resolveJsonModule": true,
     "skipLibCheck": true
   },
   "include": [
-    "src"
+    "src/**/*.ts",
   ]
 }
