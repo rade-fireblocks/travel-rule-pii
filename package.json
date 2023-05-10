@@ -1,6 +1,6 @@
 {
   "name": "travel-rule-pii",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "My Node.js application",
   "main": "dist/index.js",
   "repository": "https://github.com/rade-fireblocks/travel-rule-pii.git",
