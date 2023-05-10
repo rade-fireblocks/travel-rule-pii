@@ -1,21 +1,20 @@
 {
   "name": "travel-rule-pii",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "My Node.js application",
   "main": "dist/index.js",
   "repository": "https://github.com/rade-fireblocks/travel-rule-pii.git",
   "scripts": {
-    "clean": "rimraf dist",
-    "compile": "cross-env-shell babel src -d dist --source-maps --extensions '.ts'",
-    "build": "npm run clean && npm run compile",
-    "typecheck": "tsc --p .",
-    "build-typecheck": "npm run typecheck && npm run build",
-    "start": "npm run build-typecheck && node ./dist/index.js"
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
+    "prepare": "npm run build"
   },
   "keywords": [],
   "author": "Rade",
   "license": "MIT",
-  "type": "module",
   "dependencies": {
     "@notabene/pii-sdk": "^1.15.2",
     "axios": "^0.27.2",

@@ -55,17 +55,23 @@ export class PIIEncryption {
 
         try {
             agent = initAgent({ KMS_SECRET_KEY: kmsSecretKey }).agent as AgentType;
-            await agent.didManagerImport(JSON.parse(jsonDidKey));
-            piiIvms = await this.toolset.generatePIIField({
-                pii,
-                originatorVASPdid: travelRuleMessage.originatorVASPdid,
-                beneficiaryVASPdid: travelRuleMessage.beneficiaryVASPdid,
-                counterpartyDIDKey,
-                agent,
-                senderDIDKey: JSON.parse(jsonDidKey).did,
-                encryptionMethod: PIIEncryptionMethod.HYBRID,
-            });
+            if (jsonDidKey) {
+                await agent.didManagerImport(JSON.parse(jsonDidKey));
+                piiIvms = await this.toolset.generatePIIField({
+                    pii,
+                    originatorVASPdid: travelRuleMessage.originatorVASPdid,
+                    beneficiaryVASPdid: travelRuleMessage.beneficiaryVASPdid,
+                    counterpartyDIDKey,
+                    agent,
+                    senderDIDKey: JSON.parse(jsonDidKey).did,
+                    encryptionMethod: PIIEncryptionMethod.HYBRID,
+                });
+            } else {
+                // Handle the case when jsonDidKey is undefined
+                throw new Error('jsonDidKey is undefined');
+            }
         } catch (error) {
+            // @ts-ignore
             const errorMessage = error.message || error.toString();
             const errorDetails = JSON.stringify(error);
             throw new Error(`Failed to generate PII fields error: ${errorMessage}. Details: ${errorDetails}`);
